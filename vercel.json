@@ -1,37 +1,22 @@
 {
-  "functions": {
-    "public/index.html": {
-      "runtime": "@vercel/static"
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/public/contact.html"
+    },
+    {
+      "source": "/thanks",
+      "destination": "/public/thanks.html"
+    },
+    {
+      "source": "/Asetts/:path*",
+      "destination": "/public/Asetts/:path*"
     }
-  },
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/public/index.html"
-    },
-    {
-      "src": "/contact",
-      "dest": "/public/contact.html"
-    },
-    {
-      "src": "/thanks",
-      "dest": "/public/thanks.html"
-    },
-    {
-      "src": "/contact.html",
-      "dest": "/public/contact.html"
-    },
-    {
-      "src": "/thanks.html",
-      "dest": "/public/thanks.html"
-    },
-    {
-      "src": "/Asetts/(.*)",
-      "dest": "/public/Asetts/$1"
-    },
-    {
-      "src": "/favicon.png",
-      "dest": "/public/favicon.png"
-    }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
