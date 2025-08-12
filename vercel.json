@@ -1,0 +1,37 @@
+{
+  "functions": {
+    "public/index.html": {
+      "runtime": "@vercel/static"
+    }
+  },
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/public/contact.html"
+    },
+    {
+      "src": "/thanks",
+      "dest": "/public/thanks.html"
+    },
+    {
+      "src": "/contact.html",
+      "dest": "/public/contact.html"
+    },
+    {
+      "src": "/thanks.html",
+      "dest": "/public/thanks.html"
+    },
+    {
+      "src": "/Asetts/(.*)",
+      "dest": "/public/Asetts/$1"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "/public/favicon.png"
+    }
+  ]
+}

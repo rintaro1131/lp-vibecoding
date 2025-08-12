@@ -725,19 +725,128 @@
     }
 
     /* Apply section */
-    .form-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    .apply-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
       margin-top: 2rem;
     }
 
-    iframe {
-      border: none;
-      width: 100%;
-      height: 800px;
-      border-radius: 0.375rem;
+    .apply-description h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .apply-description p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    .apply-features {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid var(--primary);
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .apply-actions {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 2px solid #f0f0f0;
+    }
+
+    .apply-buttons {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .apply-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.25rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .apply-btn .btn-icon {
+      font-size: 1.2rem;
+    }
+
+    .apply-btn.btn-primary {
+      background: var(--primary);
+      color: white;
+      border: 2px solid var(--primary);
+    }
+
+    .apply-btn.btn-primary:hover {
+      background: #008c69;
+      border-color: #008c69;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 161, 122, 0.3);
+    }
+
+    .apply-btn.btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .apply-btn.btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 161, 122, 0.3);
+    }
+
+    .apply-note {
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .apply-note p {
+      margin: 0 0 1rem 0;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .apply-note ol {
+      margin: 0;
+      padding-left: 1.5rem;
+      color: #555;
+    }
+
+    .apply-note li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
     }
 
     /* Footer */
@@ -1050,12 +1159,72 @@
     <section id="apply">
       <div class="container">
         <h2>申し込み</h2>
-        <div class="form-container">
-          <p style="text-align: center; margin-bottom: 2rem;">
-            以下のフォームからお申し込みください。確認メールを自動送信いたします。
-          </p>
-          <!-- EDIT: GoogleフォームのURLをここに差し替え -->
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXXXXXXXXXXXXXXXXXXXXXXXXXXXX/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+        <div class="apply-content">
+          <div class="apply-description">
+            <h3>週1×全5回のAI人材育成講座</h3>
+            <p>実務で即戦力となるAI活用スキルを身につけませんか？<br>
+            現場の課題解決に直結するツール作成まで、しっかりとサポートいたします。</p>
+            
+            <div class="apply-features">
+              <div class="feature-item">
+                <span class="feature-icon">📅</span>
+                <div>
+                  <strong>開講スケジュール</strong><br>
+                  毎週1回 × 5週間の集中プログラム
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">💰</span>
+                <div>
+                  <strong>受講料金</strong><br>
+                  早割・団体割引もご用意しています
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🔧</span>
+                <div>
+                  <strong>実践重視</strong><br>
+                  業務課題の解決まで伴走サポート
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🤝</span>
+                <div>
+                  <strong>法人対応</strong><br>
+                  企業・団体での研修も承ります
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="apply-actions">
+            <div class="apply-buttons">
+              <a href="contact.html?utm_source=lp&utm_campaign=apply&category=法人・団体申込" class="btn-primary apply-btn">
+                <span class="btn-icon">🏢</span>
+                法人・団体での申し込み
+              </a>
+              
+              <a href="contact.html?utm_source=lp&utm_campaign=apply&category=個人申込" class="btn-primary apply-btn">
+                <span class="btn-icon">👤</span>
+                個人での申し込み
+              </a>
+              
+              <a href="contact.html?utm_source=lp&utm_campaign=apply&category=カリキュラムについて" class="btn-secondary apply-btn">
+                <span class="btn-icon">❓</span>
+                詳細を相談・質問する
+              </a>
+            </div>
+            
+            <div class="apply-note">
+              <p><strong>申し込みの流れ</strong></p>
+              <ol>
+                <li>お問い合わせフォームから詳細をお聞かせください</li>
+                <li>2営業日以内に担当者よりご連絡いたします</li>
+                <li>カリキュラム詳細や日程調整を行います</li>
+                <li>正式なお申し込み手続きをご案内します</li>
+              </ol>
+            </div>
+          </div>
         </div>
       </div>
     </section>

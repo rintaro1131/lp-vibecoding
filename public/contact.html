@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | AI人材育成学校</title>
+  <meta name="description" content="AI人材育成学校へのお問い合わせフォーム。カリキュラム、日程、料金についてお気軽にご相談ください。">
+  <meta property="og:title" content="お問い合わせ | AI人材育成学校">
+  <meta property="og:description" content="AI人材育成学校へのお問い合わせフォーム。カリキュラム、日程、料金についてお気軽にご相談ください。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lp-vibecoding.vercel.app/contact.html">
+  <meta property="og:image" content="https://lp-vibecoding.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="お問い合わせ | AI人材育成学校">
+  <meta name="twitter:description" content="AI人材育成学校へのお問い合わせフォーム。カリキュラム、日程、料金についてお気軽にご相談ください。">
+  <meta name="twitter:image" content="https://lp-vibecoding.vercel.app/og-image.png">
+  <link rel="icon" type="image/png" href="favicon_32.png">
+  <link rel="apple-touch-icon" href="favicon_32.png">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  
+  <style>
+    :root {
+      --primary: #00A17A;
+      --accent: #FFD05B;
+      --bg-alt: #F9FAFB;
+      --error: #ef4444;
+      --success: #22c55e;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333333;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .header-logo {
+      height: 48px;
+      width: auto;
+      margin-right: 0.5rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333333;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    main {
+      padding: 3rem 0;
+      background: var(--bg-alt);
+    }
+
+    .form-container {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333333;
+      font-size: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .required::after {
+      content: " ※";
+      color: var(--error);
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e5e5e5;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 161, 122, 0.1);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .radio-item input[type="radio"] {
+      width: auto;
+      min-height: auto;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      min-height: auto;
+      margin-top: 0.25rem;
+    }
+
+    .error-message {
+      color: var(--error);
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    input.error, textarea.error, select.error {
+      border-color: var(--error);
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+      display: block;
+      margin: 2rem auto 0;
+      min-height: 56px;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      background: #008c69;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    footer {
+      background: #333333;
+      color: #ffffff;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .footer-section p, .footer-section a {
+      margin: 0.5rem 0;
+      color: #cccccc;
+      text-decoration: none;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      border-top: 1px solid #555555;
+      padding-top: 1rem;
+      margin-top: 2rem;
+      color: #999999;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .form-container {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+      }
+
+      .form-title {
+        font-size: 1.5rem;
+      }
+
+      .radio-group {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      .form-container {
+        margin: 0 0.5rem;
+        padding: 1.5rem 1rem;
+      }
+
+      .nav {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <img src="Asetts/AI人材育成学校.png" alt="AI人材育成学校ロゴ" class="header-logo">
+          <span>AI人材育成学校</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">TOPへ戻る</a>
+          <a href="index.html">AI人材育成学校LP</a>
+          <a href="index.html#apply">申し込む</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="form-container">
+        <h1 class="form-title">お問い合わせ</h1>
+        
+        <form id="contactForm" action="https://formsubmit.co/n-moriai@eco-station.co.jp" method="POST">
+          <!-- FormSubmit設定 -->
+          <input type="hidden" name="_next" value="https://lp-vibecoding.vercel.app/thanks.html">
+          <input type="hidden" name="_subject" value="AI人材育成学校 お問い合わせ">
+          <input type="text" name="_honey" style="display:none">
+          
+          <!-- 自動取得フィールド -->
+          <input type="hidden" name="referrer" id="referrer">
+          <input type="hidden" name="utm_source" id="utm_source">
+          <input type="hidden" name="utm_medium" id="utm_medium">
+          <input type="hidden" name="utm_campaign" id="utm_campaign">
+          <input type="hidden" name="utm_content" id="utm_content">
+          <input type="hidden" name="timestamp" id="timestamp">
+
+          <div class="form-group">
+            <label for="name" class="required">お名前</label>
+            <input type="text" id="name" name="name" required>
+            <div class="error-message" id="name-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="company">会社名・部署</label>
+            <input type="text" id="company" name="company">
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="required">メールアドレス</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error-message" id="email-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">電話番号</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9\-+\s()]*">
+            <div class="error-message" id="phone-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="required">お問い合わせ区分</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="category1" name="category" value="カリキュラムについて" required>
+                <label for="category1">カリキュラムについて</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="category2" name="category" value="日程・料金について" required>
+                <label for="category2">日程・料金について</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="category3" name="category" value="法人・団体申込" required>
+                <label for="category3">法人・団体申込</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="category4" name="category" value="その他" required>
+                <label for="category4">その他</label>
+              </div>
+            </div>
+            <div class="error-message" id="category-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="required">お問い合わせ内容</label>
+            <textarea id="message" name="message" required placeholder="具体的なご質問やご要望をお聞かせください"></textarea>
+            <div class="error-message" id="message-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="required">連絡手段のご希望</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="contact_method1" name="contact_method" value="Chatwork" required>
+                <label for="contact_method1">Chatwork</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="contact_method2" name="contact_method" value="メール" required>
+                <label for="contact_method2">メール</label>
+              </div>
+            </div>
+            <div class="error-message" id="contact_method-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group hidden" id="chatwork_group">
+            <label for="chatwork_id" class="required">Chatwork ID</label>
+            <input type="text" id="chatwork_id" name="chatwork_id">
+            <div class="error-message" id="chatwork_id-error" aria-live="polite"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="privacy" name="privacy" value="同意する" required>
+              <label for="privacy" class="required">
+                <a href="#" style="color: var(--primary); text-decoration: underline;">個人情報の取り扱い</a>に同意します
+              </label>
+            </div>
+            <div class="error-message" id="privacy-error" aria-live="polite"></div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            送信する
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>AI人材育成学校</h4>
+          <p>最新のAI技術を実践的に学べる教育プログラム</p>
+        </div>
+        <div class="footer-section">
+          <h4>お問い合わせ</h4>
+          <p>Email: n-moriai@eco-station.co.jp</p>
+        </div>
+        <div class="footer-section">
+          <h4>リンク</h4>
+          <a href="index.html">トップページ</a><br>
+          <a href="#privacy">プライバシーポリシー</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 AI人材育成学校. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const chatworkGroup = document.getElementById('chatwork_group');
+      const chatworkRadios = document.querySelectorAll('input[name="contact_method"]');
+      
+      // UTM・参照元の自動取得
+      function setTrackingData() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const referrer = document.referrer || '';
+        
+        document.getElementById('referrer').value = referrer;
+        document.getElementById('utm_source').value = urlParams.get('utm_source') || '';
+        document.getElementById('utm_medium').value = urlParams.get('utm_medium') || '';
+        document.getElementById('utm_campaign').value = urlParams.get('utm_campaign') || '';
+        document.getElementById('utm_content').value = urlParams.get('utm_content') || '';
+        document.getElementById('timestamp').value = new Date().toISOString();
+      }
+      
+      setTrackingData();
+      
+      // Chatwork ID表示制御
+      chatworkRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          const chatworkInput = document.getElementById('chatwork_id');
+          if (this.value === 'Chatwork') {
+            chatworkGroup.classList.remove('hidden');
+            chatworkInput.required = true;
+          } else {
+            chatworkGroup.classList.add('hidden');
+            chatworkInput.required = false;
+            chatworkInput.value = '';
+            hideError('chatwork_id');
+          }
+        });
+      });
+      
+      // エラー表示関数
+      function showError(fieldName, message) {
+        const field = document.getElementById(fieldName);
+        const errorElement = document.getElementById(fieldName + '-error');
+        
+        if (field) field.classList.add('error');
+        if (errorElement) {
+          errorElement.textContent = message;
+          errorElement.classList.add('show');
+        }
+      }
+      
+      function hideError(fieldName) {
+        const field = document.getElementById(fieldName);
+        const errorElement = document.getElementById(fieldName + '-error');
+        
+        if (field) field.classList.remove('error');
+        if (errorElement) {
+          errorElement.textContent = '';
+          errorElement.classList.remove('show');
+        }
+      }
+      
+      // バリデーション関数
+      function validateField(fieldName) {
+        const field = document.getElementById(fieldName);
+        if (!field) return true;
+        
+        const value = field.value.trim();
+        
+        switch (fieldName) {
+          case 'name':
+            if (!value) {
+              showError(fieldName, 'お名前を入力してください。');
+              return false;
+            }
+            break;
+            
+          case 'email':
+            if (!value) {
+              showError(fieldName, 'メールアドレスを入力してください。');
+              return false;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+              showError(fieldName, '正しいメールアドレスを入力してください。');
+              return false;
+            }
+            break;
+            
+          case 'phone':
+            if (value && !/^[0-9\-+\s()]*$/.test(value)) {
+              showError(fieldName, '電話番号は数字とハイフンで入力してください。');
+              return false;
+            }
+            break;
+            
+          case 'message':
+            if (!value) {
+              showError(fieldName, 'お問い合わせ内容を入力してください。');
+              return false;
+            }
+            break;
+            
+          case 'chatwork_id':
+            if (field.required && !value) {
+              showError(fieldName, 'Chatwork IDを入力してください。');
+              return false;
+            }
+            break;
+        }
+        
+        hideError(fieldName);
+        return true;
+      }
+      
+      function validateRadioGroup(groupName) {
+        const radios = document.querySelectorAll(`input[name="${groupName}"]`);
+        const checked = Array.from(radios).some(radio => radio.checked);
+        
+        if (!checked) {
+          let message;
+          switch (groupName) {
+            case 'category':
+              message = 'お問い合わせ区分を選択してください。';
+              break;
+            case 'contact_method':
+              message = '連絡手段をお選びください。';
+              break;
+          }
+          showError(groupName, message);
+          return false;
+        }
+        
+        hideError(groupName);
+        return true;
+      }
+      
+      function validateCheckbox(fieldName) {
+        const field = document.getElementById(fieldName);
+        if (!field.checked) {
+          showError(fieldName, '個人情報の取り扱いに同意してください。');
+          return false;
+        }
+        
+        hideError(fieldName);
+        return true;
+      }
+      
+      // リアルタイムバリデーション
+      ['name', 'email', 'phone', 'message', 'chatwork_id'].forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (field) {
+          field.addEventListener('blur', () => validateField(fieldName));
+          field.addEventListener('input', () => {
+            if (field.classList.contains('error')) {
+              validateField(fieldName);
+            }
+          });
+        }
+      });
+      
+      // ラジオボタンのバリデーション
+      ['category', 'contact_method'].forEach(groupName => {
+        const radios = document.querySelectorAll(`input[name="${groupName}"]`);
+        radios.forEach(radio => {
+          radio.addEventListener('change', () => validateRadioGroup(groupName));
+        });
+      });
+      
+      // チェックボックスのバリデーション
+      document.getElementById('privacy').addEventListener('change', () => validateCheckbox('privacy'));
+      
+      // フォーム送信処理
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 全フィールドバリデーション
+        const validations = [
+          validateField('name'),
+          validateField('email'),
+          validateField('phone'),
+          validateField('message'),
+          validateField('chatwork_id'),
+          validateRadioGroup('category'),
+          validateRadioGroup('contact_method'),
+          validateCheckbox('privacy')
+        ];
+        
+        const isValid = validations.every(result => result);
+        
+        if (!isValid) {
+          // エラーがある場合は最初のエラーフィールドにフォーカス
+          const firstError = document.querySelector('.error, .show');
+          if (firstError) {
+            const fieldName = firstError.id.replace('-error', '');
+            const field = document.getElementById(fieldName);
+            if (field) {
+              field.focus();
+            }
+          }
+          return;
+        }
+        
+        // 送信処理
+        submitBtn.disabled = true;
+        submitBtn.textContent = '送信中...';
+        
+        // FormSubmitに送信
+        this.submit();
+      });
+    });
+  </script>
+</body>
+</html>

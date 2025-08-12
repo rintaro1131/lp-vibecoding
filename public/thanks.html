@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ完了 | AI人材育成学校</title>
+  <meta name="description" content="お問い合わせありがとうございました。2営業日以内にご返信いたします。">
+  <meta property="og:title" content="お問い合わせ完了 | AI人材育成学校">
+  <meta property="og:description" content="お問い合わせありがとうございました。2営業日以内にご返信いたします。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lp-vibecoding.vercel.app/thanks.html">
+  <meta property="og:image" content="https://lp-vibecoding.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="お問い合わせ完了 | AI人材育成学校">
+  <meta name="twitter:description" content="お問い合わせありがとうございました。2営業日以内にご返信いたします。">
+  <meta name="twitter:image" content="https://lp-vibecoding.vercel.app/og-image.png">
+  <link rel="icon" type="image/png" href="favicon_32.png">
+  <link rel="apple-touch-icon" href="favicon_32.png">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  
+  <style>
+    :root {
+      --primary: #00A17A;
+      --accent: #FFD05B;
+      --bg-alt: #F9FAFB;
+      --success: #22c55e;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333333;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .header-logo {
+      height: 48px;
+      width: auto;
+      margin-right: 0.5rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333333;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    main {
+      padding: 4rem 0;
+      background: var(--bg-alt);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .thanks-container {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 4rem 3rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+    }
+
+    .success-icon::after {
+      content: "✓";
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .thanks-title {
+      color: #333333;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .thanks-subtitle {
+      color: var(--success);
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+    }
+
+    .info-box {
+      background: var(--bg-alt);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      text-align: left;
+    }
+
+    .info-box h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-box h3::before {
+      content: "📋";
+      font-size: 1.2rem;
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .info-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-list li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    .contact-info h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info h3::before {
+      content: "📧";
+      font-size: 1.2rem;
+    }
+
+    .email-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.75rem 1.5rem;
+      background: white;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .email-link:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .back-button {
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 2rem;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .back-button:hover {
+      background: #008c69;
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: #333333;
+      color: #ffffff;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .footer-section p, .footer-section a {
+      margin: 0.5rem 0;
+      color: #cccccc;
+      text-decoration: none;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      border-top: 1px solid #555555;
+      padding-top: 1rem;
+      margin-top: 2rem;
+      color: #999999;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .thanks-container {
+        padding: 3rem 2rem;
+        margin: 0 1rem;
+      }
+
+      .thanks-title {
+        font-size: 1.8rem;
+      }
+
+      .info-box, .contact-info {
+        padding: 1.5rem;
+      }
+
+      .back-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      .thanks-container {
+        margin: 0 0.5rem;
+        padding: 2rem 1.5rem;
+      }
+
+      .thanks-title {
+        font-size: 1.6rem;
+      }
+
+      .nav {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <img src="Asetts/AI人材育成学校.png" alt="AI人材育成学校ロゴ" class="header-logo">
+          <span>AI人材育成学校</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">TOPへ戻る</a>
+          <a href="index.html">AI人材育成学校LP</a>
+          <a href="index.html#apply">申し込む</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="thanks-container">
+        <div class="success-icon"></div>
+        
+        <h1 class="thanks-title">お問い合わせありがとうございました</h1>
+        <p class="thanks-subtitle">お問い合わせを正常に受付いたしました</p>
+        
+        <div class="info-box">
+          <h3>今後の流れについて</h3>
+          <ul class="info-list">
+            <li><strong>2営業日以内</strong>に担当者よりご返信いたします</li>
+            <li>お急ぎの場合は、直接メールでお問い合わせください</li>
+            <li>Chatworkをご希望の方には、招待メールをお送りします</li>
+            <li>法人・団体でのお申し込みの場合は、別途詳細資料をご送付いたします</li>
+            <li>カリキュラムや日程についてのご質問には、詳細な資料と共にご回答します</li>
+          </ul>
+        </div>
+
+        <div class="contact-info">
+          <h3>直接のお問い合わせ</h3>
+          <p>より詳しい情報が必要な場合や、お急ぎの際は下記メールアドレスまで直接ご連絡ください。</p>
+          <a href="mailto:n-moriai@eco-station.co.jp" class="email-link">
+            n-moriai@eco-station.co.jp
+          </a>
+        </div>
+
+        <div class="info-box">
+          <h3>Chatworkをご希望の方へ</h3>
+          <ul class="info-list">
+            <li>Chatwork IDをご記入いただいた方には、専用グループへの招待をお送りします</li>
+            <li>リアルタイムでのやり取りが可能で、迅速なサポートをご提供できます</li>
+            <li>過去の履修生とのネットワーキングの場としてもご活用いただけます</li>
+            <li>技術的なご質問にも、より詳細にお答えできます</li>
+          </ul>
+        </div>
+
+        <a href="index.html" class="back-button">
+          TOPページに戻る
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>AI人材育成学校</h4>
+          <p>最新のAI技術を実践的に学べる教育プログラム</p>
+        </div>
+        <div class="footer-section">
+          <h4>お問い合わせ</h4>
+          <p>Email: n-moriai@eco-station.co.jp</p>
+        </div>
+        <div class="footer-section">
+          <h4>リンク</h4>
+          <a href="index.html">トップページ</a><br>
+          <a href="#privacy">プライバシーポリシー</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 AI人材育成学校. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ページ読み込み時にスクロールトップ
+    document.addEventListener('DOMContentLoaded', function() {
+      window.scrollTo(0, 0);
+      
+      // 5秒後に自動的にメールリンクにフォーカス（アクセシビリティ向上）
+      setTimeout(function() {
+        const emailLink = document.querySelector('.email-link');
+        if (emailLink) {
+          emailLink.focus();
+        }
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
