@@ -1,22 +1,5 @@
 {
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/public/index.html"
-    },
-    {
-      "source": "/contact",
-      "destination": "/public/contact.html"
-    },
-    {
-      "source": "/thanks",
-      "destination": "/public/thanks.html"
-    },
-    {
-      "source": "/Asetts/:path*",
-      "destination": "/public/Asetts/:path*"
-    }
-  ],
+  "public": "public",
   "cleanUrls": true,
   "trailingSlash": false
 }
