@@ -853,6 +853,30 @@
       line-height: 1.6;
     }
 
+    /* Grant section */
+    #grant .card{padding:1.25rem;border:1px solid #e5e7eb;border-radius:.75rem;background:#fff}
+    #grant .box{background:#fff;border:1px solid #eef0f2;border-radius:.5rem;padding:1rem}
+    #grant dl{margin:.5rem 0}
+    #grant dt{color:#475569}
+    #grant dd{margin:0;font-weight:700}
+    @media (min-width:640px){
+      #grant article .box{padding:1.25rem}
+    }
+
+    .muted {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      background: var(--accent);
+      color: #333;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
     /* Footer */
     footer {
       background: #374151;
@@ -886,6 +910,7 @@
           <li><a href="#problems">お悩み</a></li>
           <li><a href="#schedule">日程</a></li>
           <li><a href="#pricing">料金</a></li>
+          <li><a href="#grant">助成金</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#apply" class="btn-primary">申し込む</a></li>
         </ul>
@@ -1084,6 +1109,54 @@
         <div style="text-align: center; margin-top: 2rem; color: #6b7280;">
           <p><strong>全プランに含まれるもの：</strong>録画・資料・Chatwork質問サポート1か月付き</p>
         </div>
+      </div>
+    </section>
+
+    <!-- Grant Section -->
+    <section id="grant" style="background:var(--bg-alt);">
+      <div class="container">
+        <h2>助成金活用の一例</h2>
+        <p class="muted">条件を満たす場合、<strong>人材開発支援助成金</strong>の対象となる可能性があります。詳細は所轄労働局等でご確認ください。</p>
+
+        <article class="card">
+          <header style="display:flex;align-items:center;gap:.75rem;">
+            <!-- シンプルな円アイコン（¥） -->
+            <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--primary)" opacity=".1"/><text x="12" y="16" font-size="12" text-anchor="middle" fill="var(--primary)">¥</text></svg>
+            <h3 style="margin:0;">正社員1名に研修（定価 <strong>330,000円</strong>）を導入した場合</h3>
+          </header>
+
+          <div style="display:grid;gap:1rem;grid-template-columns:1fr; margin-top:1rem;">
+            <div class="box">
+              <p style="margin:.25rem 0;"><span class="badge">例示</span> <strong>助成金 75% 適用</strong> のケース：</p>
+              <dl>
+                <div style="display:flex;justify-content:space-between;gap:1rem;"><dt>支給額</dt><dd><strong>247,500円</strong></dd></div>
+                <div style="display:flex;justify-content:space-between;gap:1rem;"><dt>企業の実質負担</dt><dd><strong>82,500円</strong></dd></div>
+              </dl>
+              <p class="muted" style="margin:.25rem 0 0;">※上記は<strong>一例</strong>です。実際の助成率・上限額・対象要件により結果は変動します。</p>
+            </div>
+
+            <div class="box" style="border-left:4px solid var(--primary);padding-left:1rem;">
+              <h4 style="margin:.25rem 0;">申請はめんどくさい？</h4>
+              <p style="margin:.25rem 0;">ご安心ください。<strong>提携の社労士が申請を代行</strong>いたします。面倒な手続きをしなくて良いのが当サービスの強みです。</p>
+              <ul style="margin:.25rem 0;">
+                <li>必要書類のご案内・作成サポート</li>
+                <li>スケジュール管理（事前計画の提出期限など）</li>
+                <li>申請〜受給までの伴走</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <p class="muted" style="margin:.25rem 0;">
+                ※本助成金は<strong>雇用保険に加入済の正社員</strong>が対象です。<br>
+                業務委託・未加入者は対象外となります。適用可否は所轄労働局の判断に従います。
+              </p>
+            </div>
+          </div>
+
+          <footer style="margin-top:1rem;">
+            <a href="contact.html" role="button" class="btn-primary">助成金の相談をする</a>
+          </footer>
+        </article>
       </div>
     </section>
 
