@@ -672,12 +672,16 @@
     }
 
     /* Pricing */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
+    .pricing-grid{grid-template-columns:1fr;gap:1.25rem}
+    @media(min-width:640px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+    #pricing .card{border:1px solid #e5e7eb;border-radius:.75rem;padding:1.25rem;background:#fff}
+    #pricing .price{font-size:1.25rem;margin:.5rem 0}
+    #pricing .hint{font-size:.95rem;color:#475569}
+    #pricing .enterprise{margin-top:1.5rem;padding:1rem;border-left:4px solid var(--primary);background:var(--bg-alt)}
+    #pricing .notes{margin-top:1rem;color:#475569}
+    .calc{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:1rem}
+    .calc input[type="number"], .calc select{max-width:140px}
+    .calc .result{margin:0}
 
     .price-card {
       background: white;
@@ -910,7 +914,6 @@
           <li><a href="#problems">お悩み</a></li>
           <li><a href="#schedule">日程</a></li>
           <li><a href="#pricing">料金</a></li>
-          <li><a href="#grant">助成金</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#apply" class="btn-primary">申し込む</a></li>
         </ul>
@@ -1082,33 +1085,41 @@
     <!-- Pricing Section -->
     <section id="pricing">
       <div class="container">
-        <h2>料金・申込情報</h2>
-        <!-- EDIT: 料金はここを差し替え -->
-        <div class="pricing-grid">
-          <div class="price-card">
-            <h3>一般</h3>
-            <div class="price">¥79,800<span style="font-size: 1rem; color: #6b7280;">（税込）</span></div>
-            <p>個人参加の基本プラン</p>
-          </div>
-          <div class="price-card featured">
-            <h3>早割</h3>
-            <div class="price">¥69,800<span style="font-size: 1rem; color: #6b7280;">（税込）</span></div>
-            <p>開催3週間前までのお申し込み</p>
-          </div>
-          <div class="price-card">
-            <h3>ペア割</h3>
-            <div class="price">¥72,800<span style="font-size: 1rem; color: #6b7280;">（税込）</span></div>
-            <p>2名同時申し込み（各料金）</p>
-          </div>
-          <div class="price-card">
-            <h3>グループ/法人</h3>
-            <div class="price">¥329,000<span style="font-size: 1rem; color: #6b7280;">（税込）</span></div>
-            <p>5名パック（@¥65,800）</p>
-          </div>
+        <h2>料金</h2>
+        <p class="muted">10時間（2時間×全5回・オンライン）／録画・資料・Chatwork30日付</p>
+
+        <div class="grid pricing-grid">
+          <article class="card">
+            <h3>一般（1名）</h3>
+            <p class="price"><strong>330,000円</strong><small>（税込）</small></p>
+            <ul>
+              <li>個人・1名での受講</li>
+              <li>請求書・銀行振込対応</li>
+            </ul>
+            <a href="#apply" role="button" class="btn-primary">今すぐ申し込む</a>
+          </article>
+
+          <article class="card">
+            <h3>同時申込 <span class="badge">2–4名</span></h3>
+            <p class="price"><strong>各 297,000円</strong><small>（税込 / -10%）</small></p>
+            <ul>
+              <li>同一法人・同一期の2–4名</li>
+              <li>請求書一括可</li>
+            </ul>
+            <a href="#apply" role="button" class="btn-primary">この条件で申し込む</a>
+          </article>
+
+          <article class="card">
+            <h3>同時申込 <span class="badge">5名以上</span></h3>
+            <p class="price"><strong>各 264,000円</strong><small>（税込 / -20%）</small></p>
+            <ul>
+              <li>同一法人・同一期の5名以上</li>
+              <li>請求書一括可</li>
+            </ul>
+            <a href="#apply" role="button" class="btn-primary">この条件で申し込む</a>
+          </article>
         </div>
-        <div style="text-align: center; margin-top: 2rem; color: #6b7280;">
-          <p><strong>全プランに含まれるもの：</strong>録画・資料・Chatwork質問サポート1か月付き</p>
-        </div>
+
       </div>
     </section>
 
@@ -1381,5 +1392,73 @@
       }
     });
   </script>
+
+
+<script>
+(function(){
+  // 専門語 → やさしい言い換え
+  const TERMS = [
+    ["プロンプト","AIへの指示文"],
+    ["SaaS","月額で使うクラウドの業務アプリ"],
+    ["デプロイ","インターネットに公開する"],
+    ["リポジトリ","ファイル置き場"],
+    ["コミット","変更を記録する"],
+    ["プルリク","変更の提案"],
+    ["PR","変更の提案"],
+    ["ブランチ","作業用の分岐"],
+    ["ロールバック","前の状態に戻す"],
+    ["OGP","SNSの表示画像とタイトルの設定"],
+    ["CDN","共通配布ファイル"],
+    ["HTML","Webページの骨組み"],
+    ["CSS","見た目（色・サイズ・余白）のルール"],
+    ["JavaScript","ページに動きを付ける仕組み"],
+    ["Claude Code","AIに話してコードを作るツール"],
+    ["GitHub","コードの保管・共有サービス"],
+    ["Vercel","Web公開サービス"],
+    ["OFF-JT","勤務時間内の社外研修"]
+  ];
+
+  // 置換対象外にする要素（UI崩れ防止）
+  const SKIP = new Set(["A","BUTTON","INPUT","TEXTAREA","SELECT","CODE","PRE","SCRIPT","STYLE","NAV","HEADER","FOOTER"]);
+  const root = document.querySelector('main') || document.body;
+
+  function decorateOnce(term, easy){
+    if(!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    while(walker.nextNode()){
+      const node = walker.currentNode;
+      const p = node.parentElement;
+      if(!p || !node.nodeValue || node.nodeValue.indexOf(term) === -1) continue;
+      // 祖先にスキップタグがあれば対象外
+      let el = p;
+      let skip = false;
+      while(el){
+        if(SKIP.has(el.tagName)) { skip = true; break; }
+        el = el.parentElement;
+      }
+      if(skip) continue;
+
+      // すでに括弧説明が近傍にあるなら対象外（重複防止）
+      if(/\（=\s*.+?\）/.test(p.textContent)) continue;
+
+      // 置換（初出のみ）
+      const idx = node.nodeValue.indexOf(term);
+      if(idx === -1) continue;
+      const before = node.nodeValue.slice(0, idx);
+      const after  = node.nodeValue.slice(idx + term.length);
+      const span = document.createElement('span');
+      span.textContent = term + "（= " + easy + "）";
+      const frag = document.createDocumentFragment();
+      if(before) frag.appendChild(document.createTextNode(before));
+      frag.appendChild(span);
+      if(after)  frag.appendChild(document.createTextNode(after));
+      node.parentNode.replaceChild(frag, node);
+      return; // 初回1箇所だけ
+    }
+  }
+
+  TERMS.forEach(([t, e]) => decorateOnce(t, e));
+})();
+</script>
 </body>
 </html>
