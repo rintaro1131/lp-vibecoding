@@ -372,8 +372,19 @@
     }
 
     .problem-item::before {
-      content: "😟";
       font-size: 1.5rem;
+    }
+    
+    .problem-item:nth-child(1)::before {
+      content: "🤔";
+    }
+    
+    .problem-item:nth-child(2)::before {
+      content: "📈";
+    }
+    
+    .problem-item:nth-child(3)::before {
+      content: "🚀";
     }
 
     /* Table */
@@ -974,13 +985,11 @@
       <div class="container">
         <h2>こんなお悩みありませんか？</h2>
         <div class="problems-list">
-          <div class="problem-item">AIツール作成、何から始めれば良いか分からない</div>
-          <div class="problem-item">SaaSの月額コストが積み重なって高額になっている</div>
-          <div class="problem-item">環境構築やフレームワーク習得が苦手</div>
-          <div class="problem-item">現場に合わせたカスタマイズを内製したい</div>
-          <div class="problem-item">チームでツール開発の知見を共有したい</div>
-          <div class="problem-item">プロンプトの品質が安定しない</div>
+          <div class="problem-item">AIを活用したいが、何から始めていいかわからない</div>
+          <div class="problem-item">採用が難しいなか、少人数でも生産性を上げたい</div>
+          <div class="problem-item">社内DXやリスキリングを本気で進めたい</div>
         </div>
+        <p style="margin-top: 2rem; text-align: center; font-size: 1.125rem; color: #6b7280;">そんな企業様向けに、最大75％の助成金を活用できる実務型の生成AI研修をご用意しています。</p>
       </div>
     </section>
 
@@ -994,11 +1003,9 @@
           </div>
           <div class="outcome-list">
             <ul>
-              <li><strong>プロンプト設計と評価の基本</strong>を習得し、安定した品質でAIを活用</li>
-              <li><strong>Claude Code</strong>でコード生成・修正を効率的に回せるように</li>
-              <li><strong>GitHubで履歴管理、Vercelで公開とロールバック</strong>の基本運用</li>
-              <li><strong>既存SaaSの簡易代替を試作</strong>し、導入可否を適切に判断</li>
-              <li>業務に必要な<strong>小さなWebツール</strong>を自力で作成・改善</li>
+              <li>ChatGPT／Claudeを使った実務研修</li>
+              <li>メール／議事録／報告書など日常業務を効率化</li>
+              <li>実務活用試験の合格者に修了証を発行</li>
             </ul>
           </div>
         </div>

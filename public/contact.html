@@ -158,8 +158,40 @@
     }
 
     .radio-item input[type="radio"] {
-      width: auto;
-      min-height: auto;
+      width: 20px;
+      height: 20px;
+      min-height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      background: white;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      position: relative;
+      margin: 0;
+    }
+    
+    .radio-item input[type="radio"]:checked {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .radio-item input[type="radio"]:checked::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .radio-item input[type="radio"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 161, 122, 0.3);
     }
 
     .checkbox-group {
@@ -170,9 +202,42 @@
     }
 
     .checkbox-group input[type="checkbox"] {
-      width: auto;
-      min-height: auto;
+      width: 20px;
+      height: 20px;
+      min-height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      background: white;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      position: relative;
+      margin: 0;
       margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+    
+    .checkbox-group input[type="checkbox"]:checked {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .checkbox-group input[type="checkbox"]:checked::after {
+      content: '✓';
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 1;
+    }
+    
+    .checkbox-group input[type="checkbox"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 161, 122, 0.3);
     }
 
     .error-message {
@@ -416,8 +481,8 @@
           <div class="form-group">
             <div class="checkbox-group">
               <input type="checkbox" id="privacy" name="privacy" value="同意する" required>
-              <label for="privacy" class="required">
-                <a href="#" style="color: var(--primary); text-decoration: underline;">個人情報の取り扱い</a>に同意します
+              <label class="required" onclick="document.getElementById('privacy').checked = !document.getElementById('privacy').checked; validateCheckbox('privacy'); return false;">
+                <span style="color: var(--primary); text-decoration: underline; cursor: pointer;">個人情報の取り扱い</span>に同意します
               </label>
             </div>
             <div class="error-message" id="privacy-error" aria-live="polite"></div>
@@ -476,19 +541,26 @@
       
       setTrackingData();
       
-      // Chatwork ID表示制御
-      chatworkRadios.forEach(radio => {
+      // Chatwork ID表示制御（バリデーションとは分離）
+      chatworkRadios.forEach(function(radio) {
         radio.addEventListener('change', function() {
-          const chatworkInput = document.getElementById('chatwork_id');
-          if (this.value === 'Chatwork') {
-            chatworkGroup.classList.remove('hidden');
-            chatworkInput.required = true;
-          } else {
-            chatworkGroup.classList.add('hidden');
-            chatworkInput.required = false;
-            chatworkInput.value = '';
-            hideError('chatwork_id');
-          }
+          setTimeout(function() {
+            const chatworkInput = document.getElementById('chatwork_id');
+            const selectedRadio = document.querySelector('input[name="contact_method"]:checked');
+            
+            if (selectedRadio && selectedRadio.value === 'Chatwork') {
+              chatworkGroup.classList.remove('hidden');
+              chatworkInput.required = true;
+            } else {
+              chatworkGroup.classList.add('hidden');
+              chatworkInput.required = false;
+              chatworkInput.value = '';
+              hideError('chatwork_id');
+            }
+            
+            // バリデーション処理
+            validateRadioGroup('contact_method');
+          }, 10);
         });
       });
       
@@ -572,6 +644,8 @@
         const radios = document.querySelectorAll(`input[name="${groupName}"]`);
         const checked = Array.from(radios).some(radio => radio.checked);
         
+        console.log(`Validating radio group ${groupName}, checked: ${checked}`); // デバッグログ
+        
         if (!checked) {
           let message;
           switch (groupName) {
@@ -614,16 +688,94 @@
         }
       });
       
-      // ラジオボタンのバリデーション
-      ['category', 'contact_method'].forEach(groupName => {
-        const radios = document.querySelectorAll(`input[name="${groupName}"]`);
-        radios.forEach(radio => {
-          radio.addEventListener('change', () => validateRadioGroup(groupName));
+      // カテゴリーラジオボタンのバリデーション
+      const categoryRadios = document.querySelectorAll('input[name="category"]');
+      categoryRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          validateRadioGroup('category');
         });
       });
       
-      // チェックボックスのバリデーション
-      document.getElementById('privacy').addEventListener('change', () => validateCheckbox('privacy'));
+      // 連絡手段ラジオボタンのバリデーションは上記で統合済み
+      
+      // チェックボックスのバリデーション（完全に独立）
+      const privacyCheckbox = document.getElementById('privacy');
+      if (privacyCheckbox) {
+        privacyCheckbox.addEventListener('change', function(event) {
+          event.stopPropagation();
+          console.log('Privacy checkbox changed:', this.checked); // デバッグログ
+          validateCheckbox('privacy');
+        });
+      }
+      
+      // フォーム状態の保護と復元システム
+      let formStateBackup = {};
+      
+      function backupFormState() {
+        // ラジオボタンの状態をバックアップ
+        const contactMethods = document.querySelectorAll('input[name="contact_method"]');
+        contactMethods.forEach(function(radio) {
+          if (radio.checked) {
+            formStateBackup.contact_method = radio.value;
+          }
+        });
+        
+        const categories = document.querySelectorAll('input[name="category"]');
+        categories.forEach(function(radio) {
+          if (radio.checked) {
+            formStateBackup.category = radio.value;
+          }
+        });
+        
+        // チェックボックスの状態をバックアップ
+        const privacy = document.getElementById('privacy');
+        if (privacy) {
+          formStateBackup.privacy = privacy.checked;
+        }
+      }
+      
+      function restoreFormState() {
+        // ラジオボタンの状態を復元
+        if (formStateBackup.contact_method) {
+          const contactRadio = document.querySelector(`input[name="contact_method"][value="${formStateBackup.contact_method}"]`);
+          if (contactRadio && !contactRadio.checked) {
+            contactRadio.checked = true;
+            console.log('Restored contact method:', formStateBackup.contact_method);
+          }
+        }
+        
+        if (formStateBackup.category) {
+          const categoryRadio = document.querySelector(`input[name="category"][value="${formStateBackup.category}"]`);
+          if (categoryRadio && !categoryRadio.checked) {
+            categoryRadio.checked = true;
+          }
+        }
+        
+        // チェックボックスの状態を復元
+        if (formStateBackup.privacy !== undefined) {
+          const privacy = document.getElementById('privacy');
+          if (privacy && privacy.checked !== formStateBackup.privacy) {
+            privacy.checked = formStateBackup.privacy;
+          }
+        }
+      }
+      
+      // 状態の定期的な保護とMutationObserverによる監視
+      setInterval(backupFormState, 500);
+      setInterval(restoreFormState, 100);
+      
+      // DOM変更を監視して即座に状態を復元
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'checked') {
+            setTimeout(restoreFormState, 10);
+          }
+        });
+      });
+      
+      document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function(element) {
+        observer.observe(element, { attributes: true });
+      });
       
       // フォーム送信処理
       form.addEventListener('submit', function(e) {
