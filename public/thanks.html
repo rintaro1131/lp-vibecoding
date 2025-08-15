@@ -413,14 +413,6 @@
     // ページ読み込み時にスクロールトップ
     document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo(0, 0);
-      
-      // 5秒後に自動的にメールリンクにフォーカス（アクセシビリティ向上）
-      setTimeout(function() {
-        const emailLink = document.querySelector('.email-link');
-        if (emailLink) {
-          emailLink.focus();
-        }
-      }, 5000);
     });
   </script>
 </body>
