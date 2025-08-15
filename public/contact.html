@@ -391,10 +391,25 @@
       <div class="form-container">
         <h1 class="form-title">お問い合わせ</h1>
         
-        <form id="contactForm" action="https://formsubmit.co/n-moriai@eco-station.co.jp" method="POST">
+        <form id="contactForm" action="https://formsubmit.co/03be928de5a60704702eb24fa492c3b2" method="POST">
           <!-- FormSubmit設定 -->
           <input type="hidden" name="_next" value="https://lp-vibecoding.vercel.app/thanks.html">
           <input type="hidden" name="_subject" value="AI人材育成学校 お問い合わせ">
+          <input type="hidden" name="_autoresponse" value="お問い合わせいただき、ありがとうございます。
+
+お送りいただいたお問い合わせ内容を確認いたしました。
+通常1～2営業日以内に、担当者よりご連絡させていただきます。
+
+お急ぎの場合は、お電話でもお気軽にお問い合わせください。
+
+今後ともどうぞよろしくお願いいたします。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+AI人材育成学校
+株式会社エコーステーション
+Email: n-moriai@eco-station.co.jp
+Website: https://lp-vibecoding.vercel.app/
+━━━━━━━━━━━━━━━━━━━━━━━━">
           <input type="text" name="_honey" style="display:none">
           
           <!-- 自動取得フィールド -->
@@ -424,7 +439,7 @@
 
           <div class="form-group">
             <label for="phone">電話番号</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9\-+\s()]*">
+            <input type="tel" id="phone" name="phone" pattern="[0-9]*">
             <div class="error-message" id="phone-error" aria-live="polite"></div>
           </div>
 
@@ -482,7 +497,7 @@
             <div class="checkbox-group">
               <input type="checkbox" id="privacy" name="privacy" value="同意する" required>
               <label class="required" onclick="document.getElementById('privacy').checked = !document.getElementById('privacy').checked; validateCheckbox('privacy'); return false;">
-                <span style="color: var(--primary); text-decoration: underline; cursor: pointer;">個人情報の取り扱い</span>に同意します
+                <a href="privacy.html" target="_blank" style="color: var(--primary); text-decoration: underline;">個人情報の取り扱い</a>に同意します
               </label>
             </div>
             <div class="error-message" id="privacy-error" aria-live="polite"></div>
@@ -615,10 +630,11 @@
             break;
             
           case 'phone':
-            if (value && !/^[0-9\-+\s()]*$/.test(value)) {
-              showError(fieldName, '電話番号は数字とハイフンで入力してください。');
+            if (value && !/^[0-9]*$/.test(value)) {
+              showError(fieldName, '半角数字のみで入力してください。');
               return false;
             }
+            hideError(fieldName);
             break;
             
           case 'message':
