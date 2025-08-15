@@ -8,12 +8,12 @@
   <meta property="og:title" content="お問い合わせ | AI人材育成学校">
   <meta property="og:description" content="AI人材育成学校へのお問い合わせフォーム。カリキュラム、日程、料金についてお気軽にご相談ください。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lp-vibecoding.vercel.app/contact.html">
-  <meta property="og:image" content="https://lp-vibecoding.vercel.app/Asetts/top.png">
+  <meta property="og:url" content="https://lp-vibecoding-srgv-git-main-rintaro1131s-projects.vercel.app/contact.html">
+  <meta property="og:image" content="https://lp-vibecoding-srgv-git-main-rintaro1131s-projects.vercel.app/Asetts/top.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="お問い合わせ | AI人材育成学校">
   <meta name="twitter:description" content="AI人材育成学校へのお問い合わせフォーム。カリキュラム、日程、料金についてお気軽にご相談ください。">
-  <meta name="twitter:image" content="https://lp-vibecoding.vercel.app/Asetts/top.png">
+  <meta name="twitter:image" content="https://lp-vibecoding-srgv-git-main-rintaro1131s-projects.vercel.app/Asetts/top.png">
   <link rel="icon" type="image/png" href="favicon_32.png">
   <link rel="apple-touch-icon" href="favicon_32.png">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
@@ -393,7 +393,7 @@
         
         <form id="contactForm" action="https://formsubmit.co/03be928de5a60704702eb24fa492c3b2" method="POST">
           <!-- FormSubmit設定 -->
-          <input type="hidden" name="_next" value="https://lp-vibecoding.vercel.app/thanks.html">
+          <input type="hidden" name="_next" value="https://lp-vibecoding-srgv-git-main-rintaro1131s-projects.vercel.app/thanks.html">
           <input type="hidden" name="_subject" value="AI人材育成学校 お問い合わせ">
           <input type="hidden" name="_autoresponse" value="お問い合わせいただき、ありがとうございます。
 
@@ -408,7 +408,7 @@
 AI人材育成学校
 株式会社エコーステーション
 Email: n-moriai@eco-station.co.jp
-Website: https://lp-vibecoding.vercel.app/
+Website: https://lp-vibecoding-srgv-git-main-rintaro1131s-projects.vercel.app/
 ━━━━━━━━━━━━━━━━━━━━━━━━">
           <input type="text" name="_honey" style="display:none">
           
@@ -476,18 +476,18 @@ Website: https://lp-vibecoding.vercel.app/
             <label class="required">連絡手段のご希望</label>
             <div class="radio-group">
               <div class="radio-item">
-                <input type="radio" id="contact_method1" name="contact_method" value="Chatwork" required>
-                <label for="contact_method1">Chatwork</label>
+                <input type="radio" id="contact_method_chatwork" name="contact_method" value="Chatwork" required>
+                <label for="contact_method_chatwork">Chatwork</label>
               </div>
               <div class="radio-item">
-                <input type="radio" id="contact_method2" name="contact_method" value="メール" required>
-                <label for="contact_method2">メール</label>
+                <input type="radio" id="contact_method_email" name="contact_method" value="メール" required>
+                <label for="contact_method_email">メール</label>
               </div>
             </div>
             <div class="error-message" id="contact_method-error" aria-live="polite"></div>
           </div>
 
-          <div class="form-group hidden" id="chatwork_group">
+          <div class="form-group" id="chatwork_group" style="display: none;">
             <label for="chatwork_id" class="required">Chatwork ID</label>
             <input type="text" id="chatwork_id" name="chatwork_id">
             <div class="error-message" id="chatwork_id-error" aria-live="polite"></div>
@@ -538,8 +538,6 @@ Website: https://lp-vibecoding.vercel.app/
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('contactForm');
       const submitBtn = document.getElementById('submitBtn');
-      const chatworkGroup = document.getElementById('chatwork_group');
-      const chatworkRadios = document.querySelectorAll('input[name="contact_method"]');
       
       // UTM・参照元の自動取得
       function setTrackingData() {
@@ -556,28 +554,30 @@ Website: https://lp-vibecoding.vercel.app/
       
       setTrackingData();
       
-      // Chatwork ID表示制御（バリデーションとは分離）
-      chatworkRadios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-          setTimeout(function() {
-            const chatworkInput = document.getElementById('chatwork_id');
-            const selectedRadio = document.querySelector('input[name="contact_method"]:checked');
-            
-            if (selectedRadio && selectedRadio.value === 'Chatwork') {
-              chatworkGroup.classList.remove('hidden');
-              chatworkInput.required = true;
-            } else {
-              chatworkGroup.classList.add('hidden');
-              chatworkInput.required = false;
-              chatworkInput.value = '';
-              hideError('chatwork_id');
-            }
-            
-            // バリデーション処理
-            validateRadioGroup('contact_method');
-          }, 10);
-        });
-      });
+      // 連絡手段の選択変更処理
+      function handleContactMethodChange() {
+        const chatworkRadio = document.getElementById('contact_method_chatwork');
+        const emailRadio = document.getElementById('contact_method_email');
+        const chatworkGroup = document.getElementById('chatwork_group');
+        const chatworkInput = document.getElementById('chatwork_id');
+        
+        if (chatworkRadio.checked) {
+          chatworkGroup.style.display = 'block';
+          chatworkInput.required = true;
+        } else {
+          chatworkGroup.style.display = 'none';
+          chatworkInput.required = false;
+          chatworkInput.value = '';
+          hideError('chatwork_id');
+        }
+        
+        // バリデーション処理
+        validateRadioGroup('contact_method');
+      }
+      
+      // イベントリスナーを追加
+      document.getElementById('contact_method_chatwork').addEventListener('change', handleContactMethodChange);
+      document.getElementById('contact_method_email').addEventListener('change', handleContactMethodChange);
       
       // エラー表示関数
       function showError(fieldName, message) {
@@ -712,7 +712,13 @@ Website: https://lp-vibecoding.vercel.app/
         });
       });
       
-      // 連絡手段ラジオボタンのバリデーションは上記で統合済み
+      // 連絡手段のバリデーション（新しいID用）
+      document.getElementById('contact_method_chatwork').addEventListener('change', function() {
+        validateRadioGroup('contact_method');
+      });
+      document.getElementById('contact_method_email').addEventListener('change', function() {
+        validateRadioGroup('contact_method');
+      });
       
       // チェックボックスのバリデーション（完全に独立）
       const privacyCheckbox = document.getElementById('privacy');
@@ -724,74 +730,6 @@ Website: https://lp-vibecoding.vercel.app/
         });
       }
       
-      // フォーム状態の保護と復元システム
-      let formStateBackup = {};
-      
-      function backupFormState() {
-        // ラジオボタンの状態をバックアップ
-        const contactMethods = document.querySelectorAll('input[name="contact_method"]');
-        contactMethods.forEach(function(radio) {
-          if (radio.checked) {
-            formStateBackup.contact_method = radio.value;
-          }
-        });
-        
-        const categories = document.querySelectorAll('input[name="category"]');
-        categories.forEach(function(radio) {
-          if (radio.checked) {
-            formStateBackup.category = radio.value;
-          }
-        });
-        
-        // チェックボックスの状態をバックアップ
-        const privacy = document.getElementById('privacy');
-        if (privacy) {
-          formStateBackup.privacy = privacy.checked;
-        }
-      }
-      
-      function restoreFormState() {
-        // ラジオボタンの状態を復元
-        if (formStateBackup.contact_method) {
-          const contactRadio = document.querySelector(`input[name="contact_method"][value="${formStateBackup.contact_method}"]`);
-          if (contactRadio && !contactRadio.checked) {
-            contactRadio.checked = true;
-            console.log('Restored contact method:', formStateBackup.contact_method);
-          }
-        }
-        
-        if (formStateBackup.category) {
-          const categoryRadio = document.querySelector(`input[name="category"][value="${formStateBackup.category}"]`);
-          if (categoryRadio && !categoryRadio.checked) {
-            categoryRadio.checked = true;
-          }
-        }
-        
-        // チェックボックスの状態を復元
-        if (formStateBackup.privacy !== undefined) {
-          const privacy = document.getElementById('privacy');
-          if (privacy && privacy.checked !== formStateBackup.privacy) {
-            privacy.checked = formStateBackup.privacy;
-          }
-        }
-      }
-      
-      // 状態の定期的な保護とMutationObserverによる監視
-      setInterval(backupFormState, 500);
-      setInterval(restoreFormState, 100);
-      
-      // DOM変更を監視して即座に状態を復元
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.type === 'attributes' && mutation.attributeName === 'checked') {
-            setTimeout(restoreFormState, 10);
-          }
-        });
-      });
-      
-      document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function(element) {
-        observer.observe(element, { attributes: true });
-      });
       
       // フォーム送信処理
       form.addEventListener('submit', function(e) {
